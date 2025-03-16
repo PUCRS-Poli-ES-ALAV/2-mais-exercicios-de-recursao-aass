@@ -20,14 +20,26 @@ public class Main{
         if(l.size()== 0) return 0;
         return l.getFirst() + somatorio(new ArrayList<>(l.subList(1, l.size())));   
     }
+
+    public static int findBiggest(ArrayList<Integer> ar){
+        if(ar == null) throw new IllegalArgumentException ("Array nulo");
+        return findBiggestRecursive(ar, 0, ar.getFirst());
+    }
+
+    private static int findBiggestRecursive(ArrayList<Integer> ar, int index, int maior){
+        if (index >= ar.size()) return maior;
+        if(ar.get(index) > maior) return findBiggestRecursive(ar, index+1, ar.get(index));
+        return findBiggestRecursive(ar, index+1, maior);
+    }
     public static void main(String[] args) {
         System.out.println(isPal("ana"));
         System.out.println(convBase2(5));
         ArrayList<Integer> l = new ArrayList<>();
         l.add(1);
-        l.add(4);
         l.add(1);
+        l.add(2);
         System.out.println(somatorio(l)); 
+        System.out.println(findBiggest(l));
     }
 
 }
